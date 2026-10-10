@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090d12">
+<title>Minha Carreira — WSC</title>
+<style>
+:root{
+  --bg:#090d12;--surface:#101720;--surface2:#151f2a;--surface3:#1b2935;
+  --line:#283744;--text:#f4f7fa;--muted:#91a0ae;--lime:#c4f36b;--lime2:#9ddc3e;
+  --blue:#6bd6f5;--gold:#f7cc68;--red:#ff8585;--radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 50% -20%,#1b3032 0,transparent 42%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.wrap{width:min(1080px,100%);margin:auto;padding:24px 18px 48px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:26px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-mark{width:48px;height:48px;display:grid;place-items:center;border-radius:16px;background:var(--lime);color:#11180b;font-size:25px;box-shadow:0 8px 28px #c4f36b1b}
+.brand-kicker{font-size:10px;letter-spacing:2.4px;font-weight:900;color:var(--lime);text-transform:uppercase}
+.brand h1{font-size:22px;letter-spacing:-.7px;margin:3px 0 0;line-height:1.1}
+.top-tag{border:1px solid #33434e;background:#111b24;border-radius:999px;padding:9px 12px;font-size:11px;font-weight:800;color:#c6d2db;white-space:nowrap}
+.hero{position:relative;overflow:hidden;border:1px solid #34434a;border-radius:28px;padding:24px;background:linear-gradient(120deg,#18292c 0%,#121d26 56%,#14201a 100%);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end}
+.hero:after{content:"";position:absolute;width:260px;height:260px;border:1px solid #c4f36b19;border-radius:50%;right:-85px;top:-130px;box-shadow:0 0 0 24px #c4f36b08,0 0 0 50px #c4f36b05;pointer-events:none}
+.hero-copy,.hero-edit{position:relative;z-index:1}
+.eyebrow{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:900}
+.hero input{display:block;background:transparent;border:0;border-bottom:1px solid #52676b;color:white;font-size:clamp(25px,5vw,38px);font-weight:900;letter-spacing:-1.2px;max-width:100%;width:100%;padding:8px 0 10px;outline:none}
+.hero input:focus{border-color:var(--lime)}
+.hero-sub{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid #3a4b52;background:#0d171dc9;border-radius:999px;padding:8px 11px;color:#d7e0e4;font-size:12px}
+.hero-edit{min-width:190px}
+.hero-edit label,.field label{display:block;font-size:11px;font-weight:800;color:var(--muted);margin-bottom:7px}
+.field input,.field select{width:100%;min-width:0;border:1px solid #30404c;background:#0b1219;color:var(--text);border-radius:12px;padding:12px 13px;outline:none}
+.field input:focus,.field select:focus{border-color:var(--lime);box-shadow:0 0 0 3px #c4f36b15}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:14px 0 28px}
+.stat{background:linear-gradient(145deg,#141e28,#101720);border:1px solid var(--line);border-radius:19px;padding:17px;min-width:0}
+.stat-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:13px}
+.stat-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:#c4f36b16;color:var(--lime);font-size:17px}
+.stat-caption{font-size:11px;color:var(--muted);font-weight:750}
+.stat-value{font-size:clamp(25px,4vw,33px);font-weight:950;letter-spacing:-1.2px;line-height:1}
+.stat-foot{font-size:10px;color:#71818e;margin-top:8px}
+.section{margin-top:27px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:13px}
+.section-kicker{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--lime);font-weight:900;margin-bottom:5px}
+h2{font-size:19px;letter-spacing:-.4px;margin:0}
+.section-desc{color:var(--muted);font-size:12px;line-height:1.55;margin:7px 0 0;max-width:620px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.field.full{grid-column:1/-1}
+.add-row{display:flex;gap:8px}
+.add-row input{flex:1}
+.btn{border:1px solid transparent;border-radius:12px;padding:11px 14px;font-size:12px;font-weight:900;transition:transform .15s,filter .15s}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-primary{background:var(--lime);color:#11180b}
+.btn-secondary{background:#1b2934;color:#e5edf2;border-color:#354754}
+.btn-danger{background:#351e24;color:#ffc3c7;border-color:#60313a}
+.btn-icon{font-size:20px;line-height:1;min-width:46px}
+.form-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.form-actions .btn-primary{flex:1}
+.hint{font-size:11px;line-height:1.55;color:#8494a1;margin:12px 0 0}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:6px 7px 6px 11px;border:1px solid #3d5637;background:#1a2b20;border-radius:999px;font-size:11px;color:#e0f0d6}
+.tag button{width:21px;height:21px;border:0;border-radius:50%;background:#3b2529;color:#ffc6c9;font-weight:900}
+.chart-panel{padding:20px}
+.chart-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.chart-toolbar .field{min-width:170px}
+.chart-toolbar select{padding:10px 12px}
+.chart-current{display:flex;align-items:baseline;gap:9px}
+.chart-current strong{font-size:28px;letter-spacing:-1px;color:var(--lime)}
+.chart-current span{font-size:11px;color:var(--muted)}
+.chart-frame{border:1px solid #263541;background:linear-gradient(180deg,#0e171f,#0b1218);border-radius:17px;padding:8px 7px 0;overflow:hidden}
+#chart svg{width:100%;height:auto;display:block;min-height:190px}
+.chart-foot{display:flex;justify-content:space-between;gap:12px;color:#758795;font-size:10px;padding:11px 5px 13px}
+.trend{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:850;background:#c4f36b12;color:var(--lime);border:1px solid #c4f36b27}
+.trend.down{background:#ff858512;color:var(--red);border-color:#ff858527}
+.trend.flat{background:#91a0ae12;color:#a9b6c0;border-color:#91a0ae27}
+.season-list{display:grid;gap:10px}
+.season-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:15px}
+.season-title{font-size:14px;font-weight:900;overflow-wrap:anywhere}
+.season-club{font-size:11px;color:var(--muted);margin-top:4px}
+.season-metrics{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.metric-chip{border:1px solid #2c3b47;background:#131e28;color:#bdcbd4;border-radius:8px;padding:5px 7px;font-size:10px}
+.season-details{font-size:11px;color:#a8b8c3;line-height:1.6;margin-top:8px;overflow-wrap:anywhere}
+.item-actions{display:flex;flex-direction:column;gap:7px}
+.item-actions .btn{padding:8px 10px;font-size:10px}
+.empty{border:1px dashed #334450;border-radius:15px;padding:27px 14px;text-align:center;color:var(--muted);font-size:12px;line-height:1.6}
+.backup-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.footer{text-align:center;color:#5d6e7b;font-size:10px;letter-spacing:1.5px;margin-top:30px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#e5f7c8;color:#17200d;padding:12px 16px;border-radius:12px;font-size:12px;font-weight:900;box-shadow:0 10px 35px #0008;transition:.2s;z-index:5;max-width:calc(100% - 30px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:700px){.wrap{padding:17px 12px 35px}.hero{grid-template-columns:1fr;padding:19px;gap:17px}.hero-edit{min-width:0}.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.stat{padding:14px}.panel{padding:15px}.chart-panel{padding:14px}.section-head{align-items:flex-start}.top-tag{font-size:10px;padding:8px}.brand h1{font-size:20px}}
+@media(max-width:420px){.topbar{align-items:flex-start}.top-tag{max-width:112px;white-space:normal;text-align:center}.brand-mark{width:42px;height:42px}.brand h1{font-size:18px}.form-grid{gap:11px}.field input,.field select{padding:11px;font-size:13px}.season-item{padding:12px;grid-template-columns:minmax(0,1fr) auto}.item-actions .btn{padding:8px 7px}.chart-current strong{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark">⚽</div><div><div class="brand-kicker">World Soccer Champs</div><h1>Minha Carreira</h1></div></div>
+    <div class="top-tag">PAINEL DO JOGADOR · WSC</div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">Sua história no futebol</div>
+      <input id="player" aria-label="Nome do jogador" value="Minha Promessa" maxlength="40">
+      <div class="hero-sub">
+        <span class="pill">🏟️ <span id="clubLabel">Santos</span></span>
+        <span class="pill">📅 <span id="seasonLabel">1ª temporada</span></span>
+        <span class="pill">🗃️ <span id="seasonCount">0 temporadas</span></span>
+      </div>
+    </div>
+    <div class="hero-edit field">
+      <label for="club">CLUBE ATUAL</label><input id="club" value="Santos" maxlength="50" placeholder="Nome do clube">
+      <div style="height:10px"></div>
+      <label for="season">TEMPORADA EM EDIÇÃO</label><input id="season" value="1ª temporada" maxlength="40" placeholder="Ex.: 2026/27">
+    </div>
+  </section>
+
+  <section class="stats" aria-label="Resumo da carreira">
+    <div class="stat"><div class="stat-top"><span class="stat-caption">GOLS MARCADOS</span><span class="stat-icon">⚽</span></div><div class="stat-value" id="goalsTotal">0</div><div class="stat-foot">Total da carreira</div></div>
+    <div class="stat"><div class="stat-top"><span class="stat-caption">ASSISTÊNCIAS</span><span class="stat-icon">↗</span></div><div class="stat-value" id="assistsTotal">0</div><div class="stat-foot">Gols criados para o time</div></div>
+    <div class="stat"><div class="stat-top"><span class="stat-caption">TÍTULOS</span><span class="stat-icon">🏆</span></div><div class="stat-value" id="titlesTotal">0</div><div class="stat-foot">Conquistas registradas</div></div>
+    <div class="stat"><div class="stat-top"><span class="stat-caption">NOTA MÉDIA</span><span class="stat-icon">✦</span></div><div class="stat-value" id="ratingTotal">—</div><div class="stat-foot">Média entre temporadas</div></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><div class="section-kicker">Registro</div><h2>Dados da temporada</h2><p class="section-desc">Registre seus números no fim de cada temporada. Você pode voltar depois para editar qualquer registro.</p></div></div>
+    <div class="panel">
+      <div class="form-grid">
+        <div class="field"><label for="goals">⚽ GOLS</label><input id="goals" type="number" min="0" max="999" step="1" value="0"></div>
+        <div class="field"><label for="assists">🎯 ASSISTÊNCIAS</label><input id="assists" type="number" min="0" max="999" step="1" value="0"></div>
+        <div class="field"><label for="rating">⭐ NOTA MÉDIA (0–10)</label><input id="rating" type="number" min="0" max="10" step="0.1" placeholder="Ex.: 7,5"></div>
+        <div class="field"><label for="overall">📈 OVR FINAL (1–100)</label><input id="overall" type="number" min="1" max="100" step="1" placeholder="Ex.: 72"></div>
+        <div class="field full"><label for="titleNameInput">🏆 TÍTULOS CONQUISTADOS</label><div class="add-row"><input id="titleNameInput" maxlength="100" placeholder="Ex.: Campeonato Brasileiro"><button class="btn btn-secondary btn-icon" type="button" id="addTitle" aria-label="Adicionar título">+</button></div><div id="titleNamesList" class="tags"></div></div>
+        <div class="field full"><label for="awardNameInput">🥇 PRÊMIOS INDIVIDUAIS</label><div class="add-row"><input id="awardNameInput" maxlength="100" placeholder="Ex.: Melhor jogador da temporada"><button class="btn btn-secondary btn-icon" type="button" id="addAward" aria-label="Adicionar prêmio">+</button></div><div id="awardNamesList" class="tags"></div></div>
+      </div>
+      <div class="form-actions"><button class="btn btn-primary" type="button" id="saveSeason">Salvar temporada ↗</button><button class="btn btn-secondary" type="button" id="clearForm">Limpar formulário</button></div>
+      <p class="hint">Se salvar uma temporada com o mesmo nome de uma já existente, os dados serão atualizados em vez de criar uma duplicata.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><div class="section-kicker">Desempenho</div><h2>Evolução da carreira</h2><p class="section-desc">Agora o gráfico mostra uma única estatística por vez. A linha sobe e desce conforme seu desempenho muda em cada temporada.</p></div></div>
+    <div class="panel chart-panel">
+      <div class="chart-toolbar">
+        <div class="field"><label for="chartMetric">ESTATÍSTICA DO GRÁFICO</label><select id="chartMetric"><option value="overall">OVR do jogador</option><option value="goals">Gols por temporada</option><option value="assists">Assistências</option><option value="titles">Títulos por temporada</option><option value="rating">Nota média</option></select></div>
+        <div><div class="eyebrow" id="chartLabel">OVR FINAL</div><div class="chart-current"><strong id="chartValue">—</strong><span id="chartUnit">pontos</span></div></div>
+        <div id="trendBadge" class="trend flat">● Aguardando dados</div>
+      </div>
+      <div class="chart-frame"><div id="chart"><div class="empty">Salve sua primeira temporada para ver a evolução.</div></div><div class="chart-foot"><span id="chartStart">Primeira temporada</span><span id="chartEnd">Temporada mais recente</span></div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><div class="section-kicker">Histórico</div><h2>Temporadas registradas</h2><p class="section-desc">Seu histórico completo, com títulos e prêmios de cada etapa.</p></div><button class="btn btn-secondary" id="exportBtn">Exportar backup ↓</button></div>
+    <div id="seasons" class="season-list"><div class="empty">Nenhuma temporada registrada ainda.</div></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><div class="section-kicker">Segurança</div><h2>Backup dos seus dados</h2></div></div>
+    <div class="panel"><p class="section-desc" style="margin:0">Se trocar de celular ou navegador, exporte um backup e importe-o depois para recuperar sua carreira.</p><div class="backup-row"><button class="btn btn-secondary" id="importBtn">Importar backup ↑</button><button class="btn btn-danger" id="resetBtn">Apagar carreira</button><input id="importFile" type="file" accept="application/json,.json" hidden></div></div>
+  </section>
+  <div class="footer">MINHA CARREIRA · WSC · SUA JORNADA, SEUS NÚMEROS</div>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script>
+const KEY='minha-carreira-wsc-v2';
+const $=id=>document.getElementById(id);
+let data={player:'Minha Promessa',club:'Santos',season:'1ª temporada',seasons:[]};
+let currentTitleNames=[],currentAwardNames=[],editingId=null,toastTimer=null;
+const metricInfo={
+ overall:{key:'overall',label:'OVR FINAL',unit:'pontos',color:'#c4f36b',value:s=>s.overall==null?null:num(s.overall)},
+ goals:{key:'goals',label:'GOLS POR TEMPORADA',unit:'gols',color:'#6bd6f5',value:s=>num(s.goals)},
+ assists:{key:'assists',label:'ASSISTÊNCIAS',unit:'assistências',color:'#f7cc68',value:s=>num(s.assists)},
+ titles:{key:'titles',label:'TÍTULOS POR TEMPORADA',unit:'títulos',color:'#c39aff',value:s=>titleCount(s)},
+ rating:{key:'rating',label:'NOTA MÉDIA',unit:'de 10',color:'#ff9d82',value:s=>num(s.rating)}
+};
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&typeof x==='object')data={...data,...x,seasons:Array.isArray(x.seasons)?x.seasons:[]}}catch(e){}}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){showToast('Não foi possível salvar neste navegador. Exporte um backup.')}render()}
+function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function num(v){return Number.isFinite(+v)?+v:0}
+function titleCount(s){return num(s.legacyTitles ?? (Array.isArray(s.titleNames)?0:s.titles))+(Array.isArray(s.titleNames)?s.titleNames.length:0)}
+function cleanNames(arr){return arr.map(x=>String(x||'').trim()).filter(Boolean)}
+function showToast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2300)}
+function renderTags(){
+ $('titleNamesList').innerHTML=currentTitleNames.map((n,i)=>`<span class="tag">${safe(n)}<button type="button" onclick="removeTitle(${i})" aria-label="Remover título">×</button></span>`).join('');
+ $('awardNamesList').innerHTML=currentAwardNames.map((n,i)=>`<span class="tag">${safe(n)}<button type="button" onclick="removeAward(${i})" aria-label="Remover prêmio">×</button></span>`).join('');
+}
+window.removeTitle=i=>{currentTitleNames.splice(i,1);renderTags()};
+window.removeAward=i=>{currentAwardNames.splice(i,1);renderTags()};
+$('addTitle').onclick=()=>{const v=$('titleNameInput').value.trim();if(!v)return;currentTitleNames.push(v);$('titleNameInput').value='';renderTags()};
+$('addAward').onclick=()=>{const v=$('awardNameInput').value.trim();if(!v)return;currentAwardNames.push(v);$('awardNameInput').value='';renderTags()};
+['titleNameInput','awardNameInput'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$(id==='titleNameInput'?'addTitle':'addAward').click()}}));
+function syncHeader(){
+ $('player').value=data.player||'';$('club').value=data.club||'';$('season').value=data.season||'';
+ $('clubLabel').textContent=data.club||'Sem clube';$('seasonLabel').textContent=data.season||'Temporada';
+ $('seasonCount').textContent=`${data.seasons.length} ${data.seasons.length===1?'temporada':'temporadas'}`;
+}
+function render(){
+ syncHeader();const ss=data.seasons;
+ const g=ss.reduce((n,s)=>n+num(s.goals),0),a=ss.reduce((n,s)=>n+num(s.assists),0),t=ss.reduce((n,s)=>n+titleCount(s),0);
+ $('goalsTotal').textContent=g;$('assistsTotal').textContent=a;$('titlesTotal').textContent=t;
+ $('ratingTotal').textContent=ss.length?(ss.reduce((n,s)=>n+num(s.rating),0)/ss.length).toFixed(1):'—';
+ $('seasons').innerHTML=ss.length?ss.slice().reverse().map(s=>{
+  const titleList=Array.isArray(s.titleNames)?s.titleNames:[];
+  const awards=Array.isArray(s.awardNames)?s.awardNames:(s.awards?String(s.awards).split(',').map(x=>x.trim()).filter(Boolean):[]);
+  return `<article class="season-item"><div><div class="season-title">${safe(s.name||'Temporada')} <span style="color:#8da0ac;font-weight:600">· ${safe(s.club||'Sem clube')}</span></div><div class="season-club">RESUMO DA TEMPORADA</div><div class="season-metrics"><span class="metric-chip">⚽ ${num(s.goals)} gols</span><span class="metric-chip">🎯 ${num(s.assists)} assist.</span><span class="metric-chip">🏆 ${titleCount(s)} títulos</span><span class="metric-chip">⭐ ${num(s.rating).toFixed(1)}</span><span class="metric-chip">OVR ${s.overall==null?'—':num(s.overall)}</span></div>${titleList.length?`<div class="season-details">🏆 ${titleList.map(safe).join(' · ')}</div>`:''}${awards.length?`<div class="season-details">🥇 ${awards.map(safe).join(' · ')}</div>`:''}</div><div class="item-actions"><button class="btn btn-secondary" onclick="editSeason('${safe(s.id)}')">Editar</button><button class="btn btn-danger" onclick="deleteSeason('${safe(s.id)}')">Excluir</button></div></article>`;
+ }).join(''):'<div class="empty">Sua carreira começa com a primeira temporada.<br>Preencha os dados acima e toque em <b>Salvar temporada</b>.</div>';
+ drawChart();
+}
+function drawChart(){
+ const el=$('chart'),ss=data.seasons,metric=metricInfo[$('chartMetric').value]||metricInfo.overall;
+ $('chartLabel').textContent=metric.label;
+ if(!ss.length){el.innerHTML='<div class="empty">Salve sua primeira temporada para ver a evolução.</div>';$('chartValue').textContent='—';$('chartStart').textContent='Primeira temporada';$('chartEnd').textContent='Temporada mais recente';$('trendBadge').className='trend flat';$('trendBadge').textContent='● Aguardando dados';return}
+ const points=ss.map((s,i)=>({s,i,v:metric.value(s)})).filter(p=>p.v!==null);
+ if(!points.length){el.innerHTML='<div class="empty">Não há valores disponíveis para esta estatística.</div>';return}
+ const last=points[points.length-1],first=points[0],prev=points.length>1?points[points.length-2]:null;
+ $('chartValue').textContent=Number.isInteger(last.v)?last.v:last.v.toFixed(1);
+ $('chartUnit').textContent=metric.unit;
+ $('chartStart').textContent=ss[0].name||'Primeira temporada';$('chartEnd').textContent=ss[ss.length-1].name||'Temporada mais recente';
+ const badge=$('trendBadge');
+ if(!prev){badge.className='trend flat';badge.textContent='● Primeiro registro'}
+ else if(last.v>prev.v){badge.className='trend';badge.textContent=`↗ +${Number((last.v-prev.v).toFixed(1))} desde a última`}
+ else if(last.v<prev.v){badge.className='trend down';badge.textContent=`↘ ${Number((last.v-prev.v).toFixed(1))} desde a última`}
+ else{badge.className='trend flat';badge.textContent='→ Sem mudança'}
+ const W=760,H=310,L=52,R=24,T=24,B=58,iw=W-L-R,ih=H-T-B;
+ let min=Math.min(...points.map(p=>p.v)),max=Math.max(...points.map(p=>p.v));
+ if(metric.key==='overall'){min=Math.min(min,50);max=Math.max(max,100)}
+ if(metric.key==='rating'){min=0;max=10}
+ if(min===max){const pad=Math.max(1,Math.abs(max)*.15);min=Math.max(0,min-pad);max=max+pad}
+ else if(metric.key!=='rating'&&metric.key!=='overall'){const pad=(max-min)*.18;min=Math.max(0,min-pad);max=max+pad}
+ const x=i=>L+(points.length===1?iw/2:(i/(points.length-1))*iw);
+ const y=v=>T+ih-((v-min)/(max-min))*ih;
+ const coords=points.map((p,i)=>({x:x(i),y:y(p.v),...p}));
+ const fmt=v=>Number.isInteger(v)?String(v):v.toFixed(1);
+ let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Gráfico de linha da evolução de ${safe(metric.label.toLowerCase())} por temporada" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="areaFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="${metric.color}" stop-opacity=".28"/><stop offset="100%" stop-color="${metric.color}" stop-opacity="0"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>`;
+ for(let j=0;j<=4;j++){const val=max-(max-min)*j/4,yy=T+ih*j/4;svg+=`<line x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}" stroke="#253540" stroke-width="1" stroke-dasharray="4 6"/><text x="${L-11}" y="${yy+4}" fill="#7f929f" font-size="11" text-anchor="end">${safe(fmt(val))}</text>`}
+ const path=coords.map((p,i)=>(i?'L':'M')+p.x.toFixed(1)+' '+p.y.toFixed(1)).join(' ');
+ const area=path+` L ${coords[coords.length-1].x} ${T+ih} L ${coords[0].x} ${T+ih} Z`;
+ svg+=`<path d="${area}" fill="url(#areaFill)"/><path d="${path}" fill="none" stroke="${metric.color}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>`;
+ coords.forEach((p,i)=>{svg+=`<circle cx="${p.x}" cy="${p.y}" r="5.5" fill="#101720" stroke="${metric.color}" stroke-width="3"><title>${safe(p.s.name)}: ${fmt(p.v)} ${safe(metric.unit)}</title></circle>`;
+  const labelY=p.y< T+26?p.y+22:p.y-13;
+  svg+=`<text x="${p.x}" y="${labelY}" fill="#f2f6f8" font-size="12" font-weight="800" text-anchor="middle">${safe(fmt(p.v))}</text>`;
+  const name=String(p.s.name||`Temp. ${p.i+1}`);const short=name.length>12?name.slice(0,11)+'…':name;
+  svg+=`<text x="${p.x}" y="${H-27}" fill="#93a3ae" font-size="10" text-anchor="middle">${safe(short)}</text>`;
+ });
+ if(points.length===1){svg+=`<text x="${W/2}" y="${H-8}" fill="#627481" font-size="10" text-anchor="middle">Adicione outras temporadas para comparar a evolução</text>`}
+ svg+='</svg>';el.innerHTML=svg;
+}
+function val(id){return $(id).value.trim()}
+$('player').addEventListener('change',()=>{data.player=val('player')||'Minha Promessa';persist()});
+$('club').addEventListener('change',()=>{data.club=val('club')||'Sem clube';persist()});
+$('season').addEventListener('change',()=>{data.season=val('season')||'Temporada';persist()});
+$('chartMetric').addEventListener('change',drawChart);
+$('saveSeason').onclick=()=>{
+ const name=val('season')||`Temporada ${data.seasons.length+1}`,club=val('club')||'Sem clube';
+ const ratingRaw=val('rating');if(ratingRaw===''||num(ratingRaw)<0||num(ratingRaw)>10){showToast('Informe a nota média entre 0 e 10.');$('rating').focus();return}
+ const overallRaw=val('overall');if(overallRaw===''||num(overallRaw)<1||num(overallRaw)>100){showToast('Informe o OVR entre 1 e 100.');$('overall').focus();return}
+ const existing=data.seasons.find(s=>String(s.name).toLowerCase()===name.toLowerCase());
+ const legacyTitles=existing?num(existing.legacyTitles ?? (Array.isArray(existing.titleNames)?0:existing.titles)):0;
+ const titleNames=cleanNames(currentTitleNames),awardNames=cleanNames(currentAwardNames);
+ const obj={id:existing?existing.id:(crypto.randomUUID?crypto.randomUUID():String(Date.now())),name,club,goals:Math.max(0,num(val('goals'))),assists:Math.max(0,num(val('assists'))),rating:num(ratingRaw),overall:num(overallRaw),titles:legacyTitles+titleNames.length,legacyTitles,titleNames,awardNames,awards:awardNames.join(', ')};
+ if(existing)data.seasons=data.seasons.map(s=>s.id===existing.id?obj:s);else data.seasons.push(obj);
+ data.player=val('player')||'Minha Promessa';data.club=club;data.season=name;
+ editingId=null;persist();clearForm(false);showToast(existing?'Temporada atualizada!':'Temporada salva!');
+};
+function clearForm(resetSeason=true){
+ $('goals').value='0';$('assists').value='0';$('rating').value='';$('overall').value='';
+ currentTitleNames=[];currentAwardNames=[];$('titleNameInput').value='';$('awardNameInput').value='';
+ if(resetSeason){editingId=null;$('season').value=`Temporada ${data.seasons.length+1}`;data.season=$('season').value;syncHeader()}
+ renderTags();
+}
+$('clearForm').onclick=()=>{clearForm();showToast('Formulário limpo.')};
+window.editSeason=id=>{
+ const s=data.seasons.find(x=>String(x.id)===String(id));if(!s)return;
+ editingId=s.id;$('season').value=s.name;$('club').value=s.club;$('goals').value=s.goals;$('assists').value=s.assists;$('rating').value=s.rating;$('overall').value=s.overall??'';
+ currentTitleNames=Array.isArray(s.titleNames)?[...s.titleNames]:[];currentAwardNames=Array.isArray(s.awardNames)?[...s.awardNames]:(s.awards?String(s.awards).split(',').map(x=>x.trim()).filter(Boolean):[]);
+ $('titleNameInput').value='';$('awardNameInput').value='';renderTags();syncHeader();window.scrollTo({top:0,behavior:'smooth'});showToast('Temporada carregada para edição.');
+};
+window.deleteSeason=id=>{if(confirm('Excluir esta temporada? Essa ação não pode ser desfeita.')){data.seasons=data.seasons.filter(s=>String(s.id)!==String(id));persist();showToast('Temporada excluída.')}};
+$('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='minha-carreira-wsc-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1200);showToast('Backup preparado para exportação.')};
+$('importBtn').onclick=()=>$('importFile').click();
+$('importFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const x=JSON.parse(await f.text());if(!x||!Array.isArray(x.seasons))throw Error();data={...data,...x,seasons:x.seasons};persist();clearForm(false);showToast('Backup importado com sucesso!')}catch(err){showToast('Arquivo inválido. Escolha um backup do app.')}e.target.value=''};
+$('resetBtn').onclick=()=>{if(confirm('Isso apaga todas as temporadas salvas neste navegador. Deseja continuar?')){data={player:'Minha Promessa',club:'Santos',season:'1ª temporada',seasons:[]};currentTitleNames=[];currentAwardNames=[];persist();clearForm(false);showToast('Carreira apagada.')}};
+load();renderTags();render();
+</script>
+</body>
+</html>
